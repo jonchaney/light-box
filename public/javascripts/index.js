@@ -1,21 +1,23 @@
 const apiKey = require('../../config.js')
-const ImageIndex = require('/imageIndex.js')
+// const ImageIndex = require('/imageIndex.js')
+const Util = require('./util.js')
 
 document.addEventListener('DOMContentLoaded', () => {
-const results;
-const images;
-  fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=015250315716043265163:wsefhoswelu&searchType=image&imageSize=medium&imgColorType=mono&num=${10}&q=piano`)
-  .then((response) => {
-    return response.json();
-  })
-  .then((results) => {
-    // console.log(myJson.items);
     
-    results = new parseResults(json.items);
-    images = new ImageIndex(results);
-    images.display();
+    async function getImages(apiKey, n) {
+        const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=015250315716043265163:wsefhoswelu&searchType=image&imageSize=medium&imgColorType=mono&num=${n}&q=piano`)
+        const json = await response.json()
+        return json.items
+    }
 
-    console.log(json.items);
-  });
+    getImages(apiKey, 10).then((data) => {
+        let element = document.getElementById('main')
+        data.forEach((item) => {
+            let img = document.createElement("IMG")
+            img.src = `${item.link}`
+            element.appendChild(img)
+        })
+        console.log(data);
+    });
 
 });

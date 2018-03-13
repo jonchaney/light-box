@@ -65,10 +65,64 @@
 /************************************************************************/
 /******/ ({
 
-/***/ 56:
+/***/ 135:
 /***/ (function(module, exports) {
 
-throw new Error("Module parse failed: Unexpected token (5:13)\nYou may need an appropriate loader to handle this file type.\n| \n| document.addEventListener('DOMContentLoaded', () => {\n| const results;\n| const images;\n|   fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=015250315716043265163:wsefhoswelu&searchType=image&imageSize=medium&imgColorType=mono&num=${10}&q=piano`)");
+// const apiKey = "AIzaSyCNWw3wUkdUehRw9OBt4T3YM5DMg6A_vcE";
+const apiKey = "AIzaSyDdYBJQ-esq500_5mHyiFWyXf6U5JolZDY";
+
+module.exports = apiKey;
+
+/***/ }),
+
+/***/ 136:
+/***/ (function(module, exports) {
+
+const parseResults = (data) => {
+    let images = [];
+
+    data.forEach((item) => {
+        images.push(
+            {
+                title: item.title,
+                imageUrl: item.link,
+            }
+        )
+    });
+    return images;
+};
+
+module.exports = parseResults;
+
+/***/ }),
+
+/***/ 56:
+/***/ (function(module, exports, __webpack_require__) {
+
+const apiKey = __webpack_require__(135)
+// const ImageIndex = require('/imageIndex.js')
+const Util = __webpack_require__(136)
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    async function getImages(apiKey, n) {
+        const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=015250315716043265163:wsefhoswelu&searchType=image&imageSize=medium&imgColorType=mono&num=${n}&q=piano`)
+        const json = await response.json()
+        return json.items
+    }
+
+    getImages(apiKey, 10).then((data) => {
+        let element = document.getElementById('main')
+        data.forEach((item) => {
+            let img = document.createElement("IMG")
+            img.src = `${item.link}`
+            element.appendChild(img)
+        })
+        console.log(data);
+    });
+
+});
+
 
 /***/ })
 
