@@ -60,19 +60,17 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 56);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 56:
 /***/ (function(module, exports) {
 
-document.addEventListener('DOMContentLoaded', () => {
-
-
-});
-
+throw new Error("Module parse failed: Unexpected token (5:13)\nYou may need an appropriate loader to handle this file type.\n| \n| document.addEventListener('DOMContentLoaded', () => {\n| const results;\n| const images;\n|   fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=015250315716043265163:wsefhoswelu&searchType=image&imageSize=medium&imgColorType=mono&num=${10}&q=piano`)");
 
 /***/ })
-/******/ ]);
+
+/******/ });
 //# sourceMappingURL=bundle.js.map
