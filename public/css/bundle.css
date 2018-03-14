@@ -68,4 +68,17 @@ textarea:focus,
 button:focus {
   outline: none; }
 
+#main {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2vh; }
+  #main h1 {
+    font-family: 'Abril Fatface', sans-serif;
+    text-align: center;
+    padding-bottom: 2vh; }
+  #main div {
+    margin: auto; }
+    #main div img {
+      height: 15vw; }
+
 /*# sourceMappingURL=bundle.css.map */

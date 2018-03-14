@@ -1,1 +1,18 @@
-@import 'reset.scss'
+@import 'reset.scss';
+
+#main {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vh;
+    h1 {
+        font-family: 'Abril Fatface', sans-serif;
+        text-align: center;
+        padding-bottom: 2vh;
+    }
+    div {
+        margin: auto;
+        img{
+            height: 15vw;
+        }
+    }
+}

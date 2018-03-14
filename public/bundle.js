@@ -69,7 +69,8 @@
 /***/ (function(module, exports) {
 
 // const apiKey = "AIzaSyCNWw3wUkdUehRw9OBt4T3YM5DMg6A_vcE";
-const apiKey = "AIzaSyDdYBJQ-esq500_5mHyiFWyXf6U5JolZDY";
+// const apiKey = "AIzaSyDdYBJQ-esq500_5mHyiFWyXf6U5JolZDY";
+const apiKey = "AIzaSyA9CoKVmLUUmk9Jl3YcOPNWXXZMYWkXeHY";
 
 module.exports = apiKey;
 
@@ -78,21 +79,48 @@ module.exports = apiKey;
 /***/ 136:
 /***/ (function(module, exports) {
 
-const parseResults = (data) => {
-    let images = [];
 
-    data.forEach((item) => {
-        images.push(
-            {
-                title: item.title,
-                imageUrl: item.link,
-            }
-        )
-    });
-    return images;
-};
 
-module.exports = parseResults;
+/***/ }),
+
+/***/ 138:
+/***/ (function(module, exports) {
+
+class LightBox {
+    constructor(images) {
+        this.images = images;
+    }
+
+    // create a light box modal and put it on DOM
+    render() {
+        // get main element
+        let element = document.getElementById('main')
+        // create modal
+        let modal = document.createElement('div')
+        modal.setAttribute('id', 'modal');
+        modal.display - "none";
+        // render each element to the DOM
+        this.images.forEach((item) => {
+            let img = document.createElement('img')
+            let div = document.createElement('div')
+            img.src = `${item.link}`
+            div.appendChild(img)
+            element.appendChild(div)
+        })
+        element.addEventListener('click', (event) => lightBox(event))
+
+        const lightBox = (event) => {
+            // change css class to render light box
+            console.log(event.target.src)
+        }
+    }
+
+    lightBox() {
+
+    }
+}
+
+module.exports = LightBox;
 
 /***/ }),
 
@@ -100,26 +128,29 @@ module.exports = parseResults;
 /***/ (function(module, exports, __webpack_require__) {
 
 const apiKey = __webpack_require__(135)
-// const ImageIndex = require('/imageIndex.js')
-const Util = __webpack_require__(136)
+const LightBox = __webpack_require__(138)
+const parseResults = __webpack_require__(136)
 
 document.addEventListener('DOMContentLoaded', () => {
     
+    const results = (data) => {
+        lightBox = new LightBox(data);
+        lightBox.render();
+    };
+
+    // fetch images from Google Search API
     async function getImages(apiKey, n) {
-        const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=015250315716043265163:wsefhoswelu&searchType=image&imageSize=medium&imgColorType=mono&num=${n}&q=piano`)
+        const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=015250315716043265163:wsefhoswelu&searchType=image&imageSize=small&imgColorType=color&num=${n}&q=vintage+synthesizer`)
         const json = await response.json()
-        return json.items
+        return json.items;
     }
 
+    // call back render the results
     getImages(apiKey, 10).then((data) => {
-        let element = document.getElementById('main')
-        data.forEach((item) => {
-            let img = document.createElement("IMG")
-            img.src = `${item.link}`
-            element.appendChild(img)
-        })
-        console.log(data);
+        results(data);
     });
+
+    const images = "";
 
 });
 
