@@ -1,12 +1,19 @@
 const apiKey = require('../../config.js')
+const ImageIndex = require('./imageIndex.js')
 const LightBox = require('./lightBox.js')
 const parseResults = require('./util.js')
 
 document.addEventListener('DOMContentLoaded', () => {
     
     const results = (data) => {
-        lightBox = new LightBox(data);
-        lightBox.render();
+        
+        // create image index and render to DOM
+        imageIndex = new ImageIndex(data);
+        imageIndex.render();
+
+        // create lightBox and append to DOM
+        lightBox = new LightBox(imageIndex.images);
+        lightBox.append()
     };
 
     // fetch images from Google Search API
@@ -20,7 +27,5 @@ document.addEventListener('DOMContentLoaded', () => {
     getImages(apiKey, 10).then((data) => {
         results(data);
     });
-
-    const images = "";
 
 });

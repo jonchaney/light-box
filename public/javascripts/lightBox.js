@@ -4,12 +4,12 @@ class LightBox {
     }
 
     // create a light box modal and put it on DOM
-    render() {
+    append() {
         // get main element
         let element = document.getElementById('main')
         // create modal
         let modal = document.createElement('div')
-        modal.setAttribute('id', 'modal');
+        modal.setAttribute('id', 'light-box');
         modal.display - "none";
         // render each element to the DOM
         this.images.forEach((item) => {
