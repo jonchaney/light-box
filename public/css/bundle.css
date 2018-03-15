@@ -94,6 +94,9 @@ button:focus {
   width: 100%;
   height: 100%;
   background-color: #000000b5; }
+  #lightbox p {
+    font-size: 18vh;
+    color: #ffffff14; }
   #lightbox section {
     margin: auto; }
     #lightbox section img {
