@@ -7,17 +7,24 @@
     h1 {
         font-family: 'Abril Fatface', sans-serif;
         text-align: center;
-        margin-top: 2vh;
+        padding-top: 2vh;
+        background-color: #fffffff0;
+        padding-bottom: 2vh;
+        width: 100%;
+        position: fixed;
+        border-bottom: .25px solid #9e9e9e85;
     }
     #image-index {
         display: flex;
         flex-wrap: wrap;
         width: 95%;
+        padding-top: 10vh;
         section {
             margin: auto;
             margin-top: 2vh;
             img{
                 height: 15vh;
+                cursor: pointer;
             }
         }
             
@@ -29,17 +36,43 @@
     display: flex;
     position: absolute;
     top: 0;
+    z-index: 1;
     width: 100%;
     height: 100%;
     background-color: #000000b5;
     p {
         font-size: 18vh;
         color: #ffffff14;
+        cursor: pointer;
     }
     section {
         margin: auto;
         img {
             height: 35vh;
         }
+    }
+}
+
+footer {
+    bottom: 0;
+    padding-top: 3vh;
+    background-color: #fffffff0;
+    padding-bottom: 2vh;
+    font-size: 5vh;
+    width: 100%;
+    border-top: .25px solid #9e9e9e85;
+    position: fixed;
+    display: flex;
+    div {
+        display: flex;
+    }
+    p {
+        font-size: 1.75vh;
+        font-family: Lato, sans-serif;
+        padding: 15px 15px;
+    }
+    a {
+        color: black;
+        padding-left: 3vw;
     }
 }

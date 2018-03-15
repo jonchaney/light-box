@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
 /* 1 */
 /***/ (function(module, exports) {
 
-// const apiKey = "AIzaSyCNWw3wUkdUehRw9OBt4T3YM5DMg6A_vcE";
-const apiKey = "AIzaSyDdYBJQ-esq500_5mHyiFWyXf6U5JolZDY";
+const apiKey = "AIzaSyCNWw3wUkdUehRw9OBt4T3YM5DMg6A_vcE";
+// const apiKey = "AIzaSyDdYBJQ-esq500_5mHyiFWyXf6U5JolZDY";
 // const apiKey = "AIzaSyA9CoKVmLUUmk9Jl3YcOPNWXXZMYWkXeHY";
 
 module.exports = apiKey;
@@ -154,45 +154,60 @@ module.exports = ImageIndex;
 
 class LightBox {
     constructor(images) {
-        this.images = images;
-        this.currentImageIndex;
+        this.images = images
+        this.currentImageIndex
     }
 
     render(index) {
-        console.log(index, 'passed in');
-        console.log(this.currentImageIndex, 'current')
         this.currentImageIndex = index;
         let element = document.getElementById('main') // get main element
 
-        let lightBox = document.createElement('div')  // create lightbox
-        lightBox.setAttribute('id', 'lightbox');
+        let lightBox = document.createElement('div')  
+        lightBox.setAttribute('id', 'lightbox')     // create lightbox
         
-        let img = document.createElement('img'); /// create img
-        img.src = this.images[index % this.images.length].link
+        let img = document.createElement('img')
+        img.src = this.images[index % this.images.length].link   // create img
 
         let section = document.createElement('section') // create img container
         section.appendChild(img)
         
-        // create element for icon
-        let left = '<i class="fas fa-angle-left"></i>';
-        let right = '<i class="fas fa-angle-right"></i>';
-        let p = document.createElement('p');
-        let x = document.createElement('p');
-        p.innerHTML = left;
-        p.addEventListener('click', (event) => this.leftClick(event))
-        lightBox.appendChild(p)
+        let leftIconElement = this.createIconElement('left')
+        let rightIconElement = this.createIconElement('right') // create elements for icon
+
+        leftIconElement.addEventListener('click', (e) => this.leftClick(e))
+        rightIconElement.addEventListener('click', (e) => this.rightClick(e)) 
+
+        lightBox.appendChild(leftIconElement)
         lightBox.appendChild(section)
-        x.innerHTML = right;
-        x.addEventListener('click', (event) => this.rightClick(event))
-        lightBox.appendChild(x)
+        lightBox.appendChild(rightIconElement)
+
+        lightBox.addEventListener('click', (e) => this.removeChild(e))
         element.appendChild(lightBox);
     }
 
+    createIconElement(str){
+        let iconElement = document.createElement('p')
+        iconElement.innerHTML = `<i class="fas fa-angle-${str}"></i>`
+        return iconElement
+    }
+
     leftClick(event) {
+        this.removeChild(event);
         this.render(parseInt(this.currentImageIndex) + this.images.length - 1)
     }
 
+    removeChild(e) {
+        let element = document.getElementById('lightbox')
+        element.parentElement.removeChild(element)
+        
+        // stop event from bubbling when arrows are clicked
+        if (!e) { let e = window.event }
+        e.cancelBubble = true
+        if (e.stopPropagation) { e.stopPropagation() }
+    }
+
     rightClick(event) {
+        this.removeChild(event);
         this.render(parseInt(this.currentImageIndex) + 1)
     }
 }
