@@ -1,6 +1,9 @@
+const LightBox = require('./lightBox.js')
+
 class ImageIndex {
     constructor(images) {
         this.images = images;
+        this.lightBox = new LightBox(this.images);
     }
     
     // create the index and render it on DOM
@@ -10,19 +13,21 @@ class ImageIndex {
         let parent = document.createElement('div')
         parent.setAttribute('id', 'image-index');
         // render each element to the DOM
-        this.images.forEach((item) => {
+        this.images.forEach((item, idx) => {
             let img = document.createElement('img')
-            let div = document.createElement('section')
+            let section = document.createElement('section')
             img.src = `${item.link}`
-            div.appendChild(img)
-            parent.appendChild(div)
+            img.dataset.indexNumber = idx;
+            section.appendChild(img)
+            parent.appendChild(section)
         })
         element.appendChild(parent)
-        element.addEventListener('click', (event) => lightBox(event))
+        parent.addEventListener('click', (event) => this.renderLightBox(event))
     }
-
-    lightBox() {
-        console.log(event.target.src);
+    
+    // render the light box
+    renderLightBox(event) {
+        this.lightBox.render(event.target.dataset.indexNumber);
     }
 }
 

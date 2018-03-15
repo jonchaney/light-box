@@ -68,17 +68,35 @@ textarea:focus,
 button:focus {
   outline: none; }
 
-#main h1 {
-  font-family: 'Abril Fatface', sans-serif;
-  text-align: center;
-  margin-top: 2vh; }
-#main #image-index {
+#main {
+  align-items: center;
   display: flex;
   flex-direction: column; }
-  #main #image-index section {
-    margin: auto;
+  #main h1 {
+    font-family: 'Abril Fatface', sans-serif;
+    text-align: center;
     margin-top: 2vh; }
-    #main #image-index section img {
-      height: 15vw; }
+  #main #image-index {
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%; }
+    #main #image-index section {
+      margin: auto;
+      margin-top: 2vh; }
+      #main #image-index section img {
+        height: 15vh; }
+
+#lightbox {
+  align-items: center;
+  display: flex;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000b5; }
+  #lightbox section {
+    margin: auto; }
+    #lightbox section img {
+      height: 35vh; }
 
 /*# sourceMappingURL=bundle.css.map */

@@ -3,33 +3,33 @@ class LightBox {
         this.images = images;
     }
 
-    // create a light box modal and put it on DOM
-    append() {
-        // get main element
-        let element = document.getElementById('main')
-        // create modal
-        let modal = document.createElement('div')
-        modal.setAttribute('id', 'light-box');
-        modal.display - "none";
-        // render each element to the DOM
-        this.images.forEach((item) => {
-            let img = document.createElement('img')
-            let div = document.createElement('div')
-            img.src = `${item.link}`
-            div.appendChild(img)
-            element.appendChild(div)
-        })
-        element.addEventListener('click', (event) => lightBox(event))
+    render(index) {
+        let element = document.getElementById('main') // get main element
+        let lightBox = document.createElement('div')  // create lightbox
+        lightBox.setAttribute('id', 'lightbox');
+        
+        let img = document.createElement('img'); /// create img
+        img.src = this.images[index % this.images.length].link
 
-        const lightBox = (event) => {
-            // change css class to render light box
-            console.log(event.target.src)
-        }
+        let section = document.createElement('section') // create img container
+        section.appendChild(img)
+        
+        // create element for icon
+        let left = '<i class="fas fa-angle-left"></i>';
+        let right = '<i class="fas fa-angle-right"></i>';
+        let p = document.createElement('p');
+        let x = document.createElement('p');
+        p.innerHTML = left;
+        lightBox.appendChild(p)
+        lightBox.appendChild(section)
+        x.innerHTML = right;
+        lightBox.appendChild(x)
+        element.appendChild(lightBox);
+
+        
     }
 
-    lightBox() {
 
-    }
 }
 
 module.exports = LightBox;
