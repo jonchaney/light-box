@@ -11,8 +11,8 @@
 
 ## Features 
 
-- fetchs 10 images from the Google Custom Search API with the key phrase 'vintage+synthesizer
-- click on an image to open the light box
+- Fetchs 10 images from the Google Custom Search API with the key phrase 'vintage synthesizer'
+- Click on an image to open the light box
 
 ## To Run
 
