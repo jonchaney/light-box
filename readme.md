@@ -7,6 +7,12 @@
 - Babel
 - Sass
 - Fetch API
+- Google Custom Search API
+
+## Features 
+
+- fetchs 10 images from the Google Custom Search API with the key phrase 'vintage+synthesizer
+- click on an image to open the light box
 
 ## To Run
 
