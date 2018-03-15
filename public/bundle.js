@@ -69,19 +69,13 @@
 
 const apiKey = __webpack_require__(1)
 const ImageIndex = __webpack_require__(2)
-const parseResults = __webpack_require__(4)
 
 document.addEventListener('DOMContentLoaded', () => {
     
     const results = (data) => {
-
         // create image index and render to DOM
         let imageIndex = new ImageIndex(data);
         imageIndex.render();
-        // imageIndex.createLightBox();
-        // create lightBox and append to DOM
-        // let lightBox = new LightBox(imageIndex.images);
-        // lightBox.create()
     };
 
     // fetch images from Google Search API
@@ -175,7 +169,7 @@ class LightBox {
         let rightIconElement = this.createIconElement('right') // create elements for icon
 
         leftIconElement.addEventListener('click', (e) => this.leftClick(e))
-        rightIconElement.addEventListener('click', (e) => this.rightClick(e)) 
+        rightIconElement.addEventListener('click', (e) => this.rightClick(e)) // add right and left click listeners
 
         lightBox.appendChild(leftIconElement)
         lightBox.appendChild(section)
@@ -199,7 +193,7 @@ class LightBox {
     removeChild(e) {
         let element = document.getElementById('lightbox')
         element.parentElement.removeChild(element)
-        
+
         // stop event from bubbling when arrows are clicked
         if (!e) { let e = window.event }
         e.cancelBubble = true
@@ -213,12 +207,6 @@ class LightBox {
 }
 
 module.exports = LightBox;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports) {
-
-
 
 /***/ })
 /******/ ]);

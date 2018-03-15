@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "webpack --watch",
-    "start": "sass --watch ./public/scss/entry.scss:./public/css/bundle.css & webpack --watch",
+    "start": "sass --watch ./public/scss/entry.scss:./public/css/bundle.css & webpack --watch & open public/index.html",
     "start:debug": "DEBUG=* node app.js"
   },
   "dependencies": {

@@ -21,7 +21,7 @@ class LightBox {
         let rightIconElement = this.createIconElement('right') // create elements for icon
 
         leftIconElement.addEventListener('click', (e) => this.leftClick(e))
-        rightIconElement.addEventListener('click', (e) => this.rightClick(e)) 
+        rightIconElement.addEventListener('click', (e) => this.rightClick(e)) // add right and left click listeners
 
         lightBox.appendChild(leftIconElement)
         lightBox.appendChild(section)
@@ -45,7 +45,7 @@ class LightBox {
     removeChild(e) {
         let element = document.getElementById('lightbox')
         element.parentElement.removeChild(element)
-        
+
         // stop event from bubbling when arrows are clicked
         if (!e) { let e = window.event }
         e.cancelBubble = true
