@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return json.items;
     }
 
-    // call back render the results
+    // call back to render the results
     getImages(apiKey, 10).then((data) => {
         results(data);
     });
@@ -121,7 +121,7 @@ class ImageIndex {
         let element = document.getElementById('main')
         let parent = document.createElement('div')
         parent.setAttribute('id', 'image-index');
-        // render each element to the DOM
+        // create image elements
         this.images.forEach((item, idx) => {
             let img = document.createElement('img')
             let section = document.createElement('section')
@@ -130,6 +130,7 @@ class ImageIndex {
             section.appendChild(img)
             parent.appendChild(section)
         })
+        // render to DOM
         element.appendChild(parent)
         parent.addEventListener('click', (event) => this.renderLightBox(event))
     }
@@ -173,10 +174,10 @@ class LightBox {
 
         lightBox.appendChild(leftIconElement)
         lightBox.appendChild(section)
-        lightBox.appendChild(rightIconElement)
+        lightBox.appendChild(rightIconElement) // append to outer light box element
 
         lightBox.addEventListener('click', (e) => this.removeChild(e))
-        element.appendChild(lightBox);
+        element.appendChild(lightBox); // render to DOM
     }
 
     createIconElement(str){
@@ -190,6 +191,11 @@ class LightBox {
         this.render(parseInt(this.currentImageIndex) + this.images.length - 1)
     }
 
+    rightClick(event) {
+        this.removeChild(event);
+        this.render(parseInt(this.currentImageIndex) + 1)
+    }
+    
     removeChild(e) {
         let element = document.getElementById('lightbox')
         element.parentElement.removeChild(element)
@@ -200,10 +206,6 @@ class LightBox {
         if (e.stopPropagation) { e.stopPropagation() }
     }
 
-    rightClick(event) {
-        this.removeChild(event);
-        this.render(parseInt(this.currentImageIndex) + 1)
-    }
 }
 
 module.exports = LightBox;

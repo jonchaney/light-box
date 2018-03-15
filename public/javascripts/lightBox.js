@@ -25,10 +25,10 @@ class LightBox {
 
         lightBox.appendChild(leftIconElement)
         lightBox.appendChild(section)
-        lightBox.appendChild(rightIconElement)
+        lightBox.appendChild(rightIconElement) // append to outer light box element
 
         lightBox.addEventListener('click', (e) => this.removeChild(e))
-        element.appendChild(lightBox);
+        element.appendChild(lightBox); // render to DOM
     }
 
     createIconElement(str){
@@ -42,6 +42,11 @@ class LightBox {
         this.render(parseInt(this.currentImageIndex) + this.images.length - 1)
     }
 
+    rightClick(event) {
+        this.removeChild(event);
+        this.render(parseInt(this.currentImageIndex) + 1)
+    }
+    
     removeChild(e) {
         let element = document.getElementById('lightbox')
         element.parentElement.removeChild(element)
@@ -52,10 +57,6 @@ class LightBox {
         if (e.stopPropagation) { e.stopPropagation() }
     }
 
-    rightClick(event) {
-        this.removeChild(event);
-        this.render(parseInt(this.currentImageIndex) + 1)
-    }
 }
 
 module.exports = LightBox;

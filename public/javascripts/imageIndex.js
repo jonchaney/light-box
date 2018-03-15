@@ -12,7 +12,7 @@ class ImageIndex {
         let element = document.getElementById('main')
         let parent = document.createElement('div')
         parent.setAttribute('id', 'image-index');
-        // render each element to the DOM
+        // create image elements
         this.images.forEach((item, idx) => {
             let img = document.createElement('img')
             let section = document.createElement('section')
@@ -21,6 +21,7 @@ class ImageIndex {
             section.appendChild(img)
             parent.appendChild(section)
         })
+        // render to DOM
         element.appendChild(parent)
         parent.addEventListener('click', (event) => this.renderLightBox(event))
     }

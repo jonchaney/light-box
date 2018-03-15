@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return json.items;
     }
 
-    // call back render the results
+    // call back to render the results
     getImages(apiKey, 10).then((data) => {
         results(data);
     });
